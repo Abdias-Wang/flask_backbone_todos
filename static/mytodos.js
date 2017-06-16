@@ -37,7 +37,7 @@ $(function () {
         model: app.Todo,
 
         // Save all of the todo items under the `"todos-backbone"` namespace.
-        localStorage: new Backbone.LocalStorage("todos-backbone"),
+        //localStorage: new Backbone.LocalStorage("todos-backbone"),
 
         // Filter down the list of all todo items that are finished.
         done: function () {
@@ -106,14 +106,14 @@ $(function () {
         },
 
         toggleVisible: function () {
-			this.$el.toggleClass('hidden', this.isHidden());
-		},
+            this.$el.toggleClass('hidden', this.isHidden());
+        },
 
-		isHidden: function () {
-			return this.model.get('done') ?
-				app.TodoFilter === 'active' :
-				app.TodoFilter === 'completed';
-		},
+        isHidden: function () {
+            return this.model.get('done') ?
+            app.TodoFilter === 'active' :
+            app.TodoFilter === 'completed';
+        },
 
         // Toggle the `"done"` state of the model.
         toggleDone: function () {
@@ -143,12 +143,12 @@ $(function () {
         },
 
         revertOnEscape: function (e) {
-			if (e.which === ESC_KEY) {
-				this.$el.removeClass('editing');
-				// Also reset the hidden input back to the original value.
-				this.input.val(this.model.get('title'));
-			}
-		},
+            if (e.which === ESC_KEY) {
+                this.$el.removeClass('editing');
+                // Also reset the hidden input back to the original value.
+                this.input.val(this.model.get('title'));
+            }
+        },
 
         // Remove the item, destroy the model.
         clear: function () {
@@ -183,18 +183,18 @@ $(function () {
         initialize: function () {
 
             this.allCheckbox = this.$('.toggle-all')[0];
-			this.input = this.$('.new-todo');
-			this.footer = this.$('.footer');
-			this.main = this.$('.main');
-			this.list = $('.todo-list');
+            this.input = this.$('.new-todo');
+            this.footer = this.$('.footer');
+            this.main = this.$('.main');
+            this.list = $('.todo-list');
 
-			this.listenTo(app.todos, 'add', this.addOne);
-			this.listenTo(app.todos, 'reset', this.addAll);
-			this.listenTo(app.todos, 'change:completed', this.filterOne);
-			this.listenTo(app.todos, 'filter', this.filterAll);
-			this.listenTo(app.todos, 'all', _.debounce(this.render, 0));  // what is all event?
+            this.listenTo(app.todos, 'add', this.addOne);
+            this.listenTo(app.todos, 'reset', this.addAll);
+            this.listenTo(app.todos, 'change:completed', this.filterOne);
+            this.listenTo(app.todos, 'filter', this.filterAll);
+            this.listenTo(app.todos, 'all', _.debounce(this.render, 0));  // what is all event?
 
-            app.todos.fetch(); //-- if fetch from local storage, do not need url? ???????????????????????????????
+            //app.todos.fetch(); //-- if fetch from local storage, do not need url? ???????????????????????????????
         },
 
         // Re-rendering the App just means refreshing the statistics -- the rest
@@ -208,9 +208,9 @@ $(function () {
                 this.footer.show();
                 this.footer.html(this.statsTemplate({done: done, remaining: remaining}));
                 this.$('.filters li a')
-					.removeClass('selected')
-					.filter('[href="#/' + (app.TodoFilter || '') + '"]')
-					.addClass('selected'); // ---- fine, this is just jquery filter and add class ?????????????????????
+                    .removeClass('selected')
+                    .filter('[href="#/' + (app.TodoFilter || '') + '"]')
+                    .addClass('selected'); // ---- fine, this is just jquery filter and add class ?????????????????????
             } else {
                 this.main.hide();
                 this.footer.hide();
@@ -234,29 +234,29 @@ $(function () {
 
 
         filterOne: function (todo) {
-			todo.trigger('visible');
-		},
+            todo.trigger('visible');
+        },
 
-		filterAll: function () {
-			app.todos.each(this.filterOne, this);
-		},
+        filterAll: function () {
+            app.todos.each(this.filterOne, this);
+        },
 
         // If you hit return in the main input field, create new **Todo** model,
         // persisting it to *localStorage*.
 
         newAttributes: function () {
-			return {
-				title: this.input.val().trim(),
-				order: app.todos.nextOrder(),
-				completed: false
-			};
-		},
+            return {
+                title: this.input.val().trim(),
+                order: app.todos.nextOrder(),
+                completed: false
+            };
+        },
 
         createOnEnter: function (e) {
             if (e.which === ENTER_KEY && this.input.val().trim()) {
-				app.todos.create(this.newAttributes());
-				this.input.val('');
-			}
+                app.todos.create(this.newAttributes());
+                this.input.val('');
+            }
         },
 
         // Clear all done todo items, destroying their models.
@@ -277,21 +277,21 @@ $(function () {
     new app.AppView();
 
     var TodoRouter = Backbone.Router.extend({
-		routes: {
-			'*filter': 'setFilter'
-		},
+        routes: {
+            '*filter': 'setFilter'
+        },
 
-		setFilter: function (param) {
-			// Set the current filter to be used
-			app.TodoFilter = param || '';
+        setFilter: function (param) {
+            // Set the current filter to be used
+            app.TodoFilter = param || '';
 
-			// Trigger a collection filter event, causing hiding/unhiding
-			// of Todo view items
-			app.todos.trigger('filter');
-		}
-	});
+            // Trigger a collection filter event, causing hiding/unhiding
+            // of Todo view items
+            app.todos.trigger('filter');
+        }
+    });
 
-	app.TodoRouter = new TodoRouter();
-	Backbone.history.start();
+    app.TodoRouter = new TodoRouter();
+    Backbone.history.start();
 
 });

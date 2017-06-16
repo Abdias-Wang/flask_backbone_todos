@@ -28,7 +28,7 @@
 <script type="text/template" id="item-template">
     <div class="item-view">
         <input class="toggle" type="checkbox" <%= done ? 'checked' : '' %>>
-        <label><%- title %></label>
+        <label><%- order %>: <%- title %></label>
         <button class="destroy"></button>
     </div>
     <input class="edit" type="text" value="<%- title %>">
@@ -48,9 +48,14 @@
 <script src="js/jquery.js"></script>
 <script src="js/underscore.js"></script>
 <script src="js/backbone.js"></script>
-<script src="js/backbone.localStorage.js"></script>
+<!--<script src="js/backbone.localStorage.js"></script> -->
 <script src="mytodos.js"></script>
 
-
+<script>
+    $(function () {
+        app.todos.url = '{{ url_for("todo_create") }}';
+        app.todos.reset({{todos | tojson}});
+    });
+</script>
 </body>
 </html>
