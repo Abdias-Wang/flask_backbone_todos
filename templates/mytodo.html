@@ -3,13 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title>TODO Backbone MySQL</title>
-    <link rel="stylesheet" href="todos.css"/>
+    <title>TODO Backbone local storage</title>
+    <link rel="stylesheet" href="css/index.css"/>
 </head>
-<!--
-    <link rel="stylesheet" href="node_modules/todomvc-common/base.css">
-    <link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
--->
 <body>
 <section class="todoapp">
     <header class="header">
@@ -35,29 +31,26 @@
         <label><%- title %></label>
         <button class="destroy"></button>
     </div>
-    <input class="edit" value="<%- title %>">
+    <input class="edit" type="text" value="<%- title %>">
 </script>
 <script type="text/template" id="stats-template">
     <span class="todo-count"><strong><%= remaining %></strong> <%= remaining === 1 ? 'item' : 'items' %> left</span>
     <ul class="filters">
         <li><a class="selected" href="#/">All</a></li>
         <li><a href="#/active">Active</a></li>
-        <li><a href="#/done">Completed</a></li>
+        <li><a href="#/completed">Completed</a></li>
     </ul>
-    <% if (done) { %>
+        <% if (done) { %>
     <button class="clear-completed">Clear completed</button>
-    <% } %>
+        <% } %>
 </script>
 
-<script src="node_modules/jquery/dist/jquery.js"></script>
-<script src="node_modules/underscore/underscore.js"></script>
-<script src="node_modules/backbone/backbone.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/underscore.js"></script>
+<script src="js/backbone.js"></script>
+<script src="js/backbone.localStorage.js"></script>
 <script src="mytodos.js"></script>
 
-<script>
-    app.todos.url = '{{ url_for("todo_create") }}';
-    app.todos.reset({{ todos | tojson }});
-</script>
 
 </body>
 </html>

@@ -14,7 +14,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
-.todoapp {
+#todoapp {
 	background: #fff;
 	padding: 20px;
 	margin-bottom: 40px;
@@ -30,14 +30,14 @@ body {
 	border-radius: 0 0 5px 5px;
 }
 
-.todoapp h1 {
+#todoapp h1 {
 	font-size: 36px;
 	font-weight: bold;
 	text-align: center;
 	padding: 0 0 10px 0;
 }
 
-.todoapp input[type="text"] {
+#todoapp input[type="text"] {
 	width: 466px;
 	font-size: 24px;
 	font-family: inherit;
@@ -53,37 +53,37 @@ body {
 	box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
 }
 
-.todoapp input::-webkit-input-placeholder {
+#todoapp input::-webkit-input-placeholder {
 	font-style: italic;
 }
 
-.main {
+#main {
 	display: none;
 }
 
-.todo-list {
+#todo-list {
 	margin: 10px 0;
 	padding: 0;
 	list-style: none;
 }
 
-.todo-list li {
+#todo-list li {
 	padding: 18px 20px 18px 0;
 	position: relative;
 	font-size: 24px;
 	border-bottom: 1px solid #cccccc;
 }
 
-.todo-list li:last-child {
+#todo-list li:last-child {
 	border-bottom: none;
 }
 
-.todo-list li.done label {
+#todo-list li.done label {
 	color: #777777;
 	text-decoration: line-through;
 }
 
-.todo-list .destroy {
+#todo-list .destroy {
 	position: absolute;
 	right: 5px;
 	top: 20px;
@@ -94,44 +94,44 @@ body {
 	background: url(destroy.png) no-repeat;
 }
 
-.todo-list li:hover .destroy {
+#todo-list li:hover .destroy {
   	display: block;
 }
 
-.todo-list .destroy:hover {
+#todo-list .destroy:hover {
   	background-position: 0 -20px;
 }
 
-.todo-list li.editing {
+#todo-list li.editing {
 	border-bottom: none;
 	margin-top: -1px;
 	padding: 0;
 }
 
-.todo-list li.editing:last-child {
+#todo-list li.editing:last-child {
 	margin-bottom: -1px;
 }
 
-.todo-list li.editing .edit {
+#todo-list li.editing .edit {
 	display: block;
 	width: 444px;
 	padding: 13px 15px 14px 20px;
 	margin: 0;
 }
 
-.todo-list li.editing .item-view {
+#todo-list li.editing .view {
 	display: none;
 }
 
-.todo-list li .item-view label {
+#todo-list li .view label {
 	word-break: break-word;
 }
 
-.todo-list li .edit {
+#todo-list li .edit {
 	display: none;
 }
 
-.todoapp footer {
+#todoapp footer {
 	display: none;
 	margin: 0 -20px -20px -20px;
 	overflow: hidden;
@@ -147,7 +147,7 @@ body {
 	border-radius: 0 0 5px 5px;
 }
 
-.clear-completed {
+#clear-completed {
 	float: right;
 	line-height: 20px;
 	text-decoration: none;
@@ -170,7 +170,7 @@ body {
 	box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0 0;
 }
 
-.clear-completed:hover {
+#clear-completed:hover {
 	background: rgba(0, 0, 0, 0.15);
 	-webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
 	-moz-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
@@ -179,33 +179,33 @@ body {
 	box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
 }
 
-.clear-completed:active {
+#clear-completed:active {
 	position: relative;
 	top: 1px;
 }
 
-.todo-count span {
+#todo-count span {
 	font-weight: bold;
 }
 
-.instructions {
+#instructions {
 	margin: 10px auto;
 	color: #777777;
 	text-shadow: rgba(255, 255, 255, 0.8) 0 1px 0;
 	text-align: center;
 }
 
-.instructions a {
+#instructions a {
 	color: #336699;
 }
 
-.credits {
+#credits {
 	margin: 30px auto;
 	color: #999;
 	text-shadow: rgba(255, 255, 255, 0.8) 0 1px 0;
 	text-align: center;
 }
 
-.credits a {
+#credits a {
 	color: #888;
 }
