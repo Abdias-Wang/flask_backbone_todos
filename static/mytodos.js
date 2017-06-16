@@ -8,7 +8,7 @@ $(function () {
     // Todo Model
     // ----------
 
-    // Our basic **Todo** model has `title`, `order`, and `done` attributes.
+    // Our basic **Todo** model has `title`, `id`, and `done` attributes.
     app.Todo = Backbone.Model.extend({
         // Default attributes for the todo item.
         defaults: function () {
@@ -248,12 +248,14 @@ $(function () {
             return {
                 title: this.input.val().trim(),
                 order: app.todos.nextOrder(),
-                completed: false
+                done: false
             };
         },
 
         createOnEnter: function (e) {
             if (e.which === ENTER_KEY && this.input.val().trim()) {
+                console.log('create a new entry');
+                console.log(this.newAttributes());
                 app.todos.create(this.newAttributes());
                 this.input.val('');
             }

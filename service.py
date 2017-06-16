@@ -6,7 +6,7 @@ from flask import (
     render_template,
     request)
 
-TODOS = []
+TODOS = {}
 
 app = Flask(__name__, static_url_path='')
 app.debug = True
@@ -14,16 +14,17 @@ app.debug = True
 
 @app.route('/')
 def index():
-    todos = filter(None, TODOS)
-    return render_template('mytodo.html', todos=todos)
+    # todos = filter(None, TODOS)
+    return render_template('mytodo.html', todos=TODOS.values())
 
 
 @app.route('/todos/', methods=['POST'])
 def todo_create():
     print('called todo_create')
     todo = request.get_json()
-    todo['id'] = len(TODOS)
-    TODOS.append(todo)
+    id = todo['order']
+    todo['id'] = id
+    TODOS[id] = todo
     return _todo_response(todo)
 
 
@@ -44,21 +45,20 @@ def todo_update(id):
 @app.route('/todos/<int:id>', methods=['DELETE'])
 def todo_delete(id):
     todo = _todo_get_or_404(id)
-    TODOS[id] = None
+    TODOS.pop(id)
     return _todo_response(todo)
 
 
 def _todo_get_or_404(id):
-    print(TODOS)
-    if not (0 <= id < len(TODOS)):
-        abort(404)
-    todo = TODOS[id]
-    if todo is None:
+    if id in TODOS:
+        todo = TODOS[id]
+    else:
         abort(404)
     return todo
 
 
 def _todo_response(todo):
+    print(TODOS)
     return jsonify(**todo)
 
 
