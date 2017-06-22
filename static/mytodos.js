@@ -2,6 +2,7 @@ var app = app || {};
 var ENTER_KEY = 13;
 var ESC_KEY = 27;
 
+
 // Load the application once the DOM is ready, using `jQuery.ready`:
 $(function () {
 
@@ -133,6 +134,7 @@ $(function () {
                 this.clear();
             } else {
                 this.model.save({title: value});
+                console.log('update saving is called!!')
                 this.$el.removeClass("editing");
             }
         },
@@ -254,8 +256,6 @@ $(function () {
 
         createOnEnter: function (e) {
             if (e.which === ENTER_KEY && this.input.val().trim()) {
-                console.log('create a new entry');
-                console.log(this.newAttributes());
                 app.todos.create(this.newAttributes());
                 this.input.val('');
             }
