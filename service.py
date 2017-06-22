@@ -9,9 +9,10 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__, static_url_path='')
+app.config['SECRET_KEY'] = 'F34TF$($e34Dsd76fd7s3*sdjhf^&%$%^#';
 app.debug = True
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todos.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://aaa:bbb@localhost/webdb'  # 'sqlite:///todos.db'
 db = SQLAlchemy(app)
 
 
@@ -23,7 +24,7 @@ def init_db():
 class Todo(db.Model):
     __tablename__ = 'todos'
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String)
+    title = db.Column(db.String(128))
     order = db.Column(db.Integer)
     done = db.Column(db.Boolean)
 
@@ -81,10 +82,10 @@ def todo_delete(id):
 
 
 def _todo_response(todo):
-    '''print(todo.to_json())'''
+    '''print(todo.to_json())
     tt = Todo.query.all()
     for t in tt:
-        print('id:{id},todo: {tod}, done: {done}'.format(id=t.id, tod=t.title, done=t.done))
+        print('id:{id}, todo:{tod}, done:{done};'.format(id=t.id, tod=t.title, done=t.done))'''
     return jsonify(**todo.to_json())
 
 
